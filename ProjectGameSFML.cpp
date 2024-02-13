@@ -47,12 +47,15 @@ int main()
        { 
           
           
-           
+           herosprite.setOrigin(herosprite.getLocalBounds().width / 2, herosprite.getLocalBounds().height / 2);
+           herosprite.setScale(-1.f, 1.f);
            Frame += 0.005 * time;  
 
-           if (Frame > 8) Frame += 8; 
-
-           herosprite.setTextureRect(IntRect(120 * int(Frame), 1475,205, 58));
+           if (Frame > 8)
+           {
+               Frame = 0;
+           }
+           herosprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 51));
            herosprite.move(-0.1 * time, 0);
        }
 
@@ -62,7 +65,7 @@ int main()
            Frame += 0.005 * time;
            if (Frame > 8)
            {
-                Frame -= 8;
+                Frame = 0;
            }
                
            herosprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 51));
