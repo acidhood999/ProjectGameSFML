@@ -56,7 +56,7 @@ int main()
            herosprite.move(-0.1 * time, 0);
        }
 
-       if ((Keyboard::isKeyPressed(Keyboard::D) || (Keyboard::isKeyPressed(Keyboard::D)))) 
+       if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) 
        {
            
            Frame += 0.005 * time;
@@ -73,7 +73,7 @@ int main()
        if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
            Frame += 0.005 * time; 
            if (Frame > 3) Frame -= 3; 
-           herosprite.setTextureRect(IntRect(96 * int(Frame)+  0,1, 96, 96)); 
+           herosprite.setTextureRect(IntRect(32 * int(Frame)+ 18, 131, 30, 51));
            herosprite.move(0, -0.1 * time);
        }
 
