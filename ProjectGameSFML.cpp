@@ -1,12 +1,22 @@
 ﻿// ProjectGameSFML.cpp
-#include <SFML/Graphics.hpp>
-#include <iostream>
-using namespace sf;
-using namespace std;
+#include "Entity.h"
+
+bool isAnyKeyPressed()
+{
+    for (int i = 0; i < Keyboard::KeyCount; ++i)
+    {
+        if (Keyboard::isKeyPressed(static_cast<Keyboard::Key>(i)))
+            return false;
+    }
+    return true;
+}
 
 int main()
 {
    RenderWindow window(VideoMode(900, 600), "Game");
+
+   Player Hero("igrok.png", 104, 70, 30, 51);
+
 
    Image heroimg;
    heroimg.loadFromFile("igrok.png");
@@ -18,13 +28,13 @@ int main()
 
    Sprite herosprite;
    herosprite.setTexture(herotexture);
-   herosprite.setTextureRect(IntRect(15,8,30,51));// 1 - откуда начинаем(Начало)  2 - больше вниз/меньше вверх (Y) 3 - ширина(y) 4 - удлиняет картинку вниз или вверх(Y)
+   herosprite.setTextureRect(IntRect());
    herosprite.setPosition(450, 300);
 
    
  
   
-   // 1 - откуда начинаем(Начало)  2 - больше вниз/меньше вверх (Y) 3 - ширина(y) 4 - удлиняет картинку вниз или вверх(Y)
+
 
 
    float Frame = 0;
@@ -43,7 +53,19 @@ int main()
                window.close();
        }
 
-       if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) 
+      /* if (isAnyKeyPressed())
+       {
+           Frame += 0.005 * time;
+
+           if (Frame > 13)
+           {
+               Frame = 0;
+           }
+           herosprite.setTextureRect(IntRect(32 * int(Frame) + 18, 9, 33, 51));
+           
+       }*/
+       
+      /*if ((Keyboard::isKeyPressed(Keyboard::A))) 
        { 
           
           
@@ -54,11 +76,11 @@ int main()
            {
                Frame = 0;
            }
-           herosprite.setTextureRect(IntRect(32 * int(Frame)+ 18+30, 131, -30, 51));
+           herosprite.setTextureRect(IntRect(32 * int(Frame)+ 18 +30, 131, -30, 51));
            herosprite.move(-0.1 * time, 0);
        }
 
-       if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) 
+       if ((Keyboard::isKeyPressed(Keyboard::D))) 
        {
            
            Frame += 0.005 * time;
@@ -71,28 +93,58 @@ int main()
            herosprite.move(0.1 * time, 0);
        }
 
+       if ((Keyboard::isKeyPressed(Keyboard::A) && (Keyboard::isKeyPressed(Keyboard::D))))
+       {
 
-       if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
-           Frame += 0.005 * time; 
-           if (Frame > 3) Frame -= 3; 
-           herosprite.setTextureRect(IntRect(32 * int(Frame)+ 18, 131, 30, 51));
-           herosprite.move(0, -0.1 * time);
+           herosprite.setTextureRect(IntRect(104, 70, 30, 51));
+       }*/
+
+       if ((Keyboard::isKeyPressed(Keyboard::A)))
+       {
+           Hero.napravlenie = 1;
+           Hero.speed = 0.1;
+           Frame += 0.005 * time;
+
+           if (Frame > 8)
+           {
+               Frame = 0;
+           }
+
+           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18 + 30, 131, -30, 51));
+           
        }
 
-       if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
-           Frame += 0.005 * time; 
-           if (Frame > 3) Frame -= 3; 
-           herosprite.setTextureRect(IntRect(96 * int(Frame), 0, 96, 96)); 
-           herosprite.move(0, 0.1 * time);
+       if ((Keyboard::isKeyPressed(Keyboard::D)))
+       {
+
+           Frame += 0.005 * time;
+           if (Frame > 8)
+           {
+               Frame = 0;
+           }
+
+           herosprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 51));
+           herosprite.move(0.1 * time, 0);
+       }
+
+       if ((Keyboard::isKeyPressed(Keyboard::A) && (Keyboard::isKeyPressed(Keyboard::D))))
+       {
+
+           herosprite.setTextureRect(IntRect(104, 70, 30, 51));
        }
 
        
+
+      
+
+       Hero.walking(time);
       
 
        
 
        window.clear();
        window.draw(herosprite);
+       window.draw(Hero.sprite);
        window.display();
    }
     
