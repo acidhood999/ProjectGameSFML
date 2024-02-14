@@ -15,7 +15,7 @@ int main()
 {
    RenderWindow window(VideoMode(900, 600), "Game");
 
-   Player Hero("igrok.png", 104, 70, 30, 51);
+   Player Hero("igrok.png", 77, 70, 30, 51);
 
 
    Image heroimg;
@@ -116,25 +116,36 @@ int main()
 
        if ((Keyboard::isKeyPressed(Keyboard::D)))
        {
-
+           Hero.napravlenie = 0;
+           Hero.speed = 0.1;
            Frame += 0.005 * time;
            if (Frame > 8)
            {
                Frame = 0;
            }
 
-           herosprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 51));
-           herosprite.move(0.1 * time, 0);
+           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 51));
+           //herosprite.move(0.1 * time, 0);
        }
 
        if ((Keyboard::isKeyPressed(Keyboard::A) && (Keyboard::isKeyPressed(Keyboard::D))))
        {
 
-           herosprite.setTextureRect(IntRect(104, 70, 30, 51));
+           Hero.sprite.setTextureRect(IntRect(104, 70, 30, 51));
+           Hero.walking(0);
        }
-
        
+       if (isAnyKeyPressed())
+       {
+           Frame += 0.005 * time;
 
+           if (Frame > 13)
+           {
+               Frame = 0;
+           }
+           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18, 9, 33, 51));
+
+       }
       
 
        Hero.walking(time);
@@ -143,7 +154,7 @@ int main()
        
 
        window.clear();
-       window.draw(herosprite);
+       //window.draw(herosprite);
        window.draw(Hero.sprite);
        window.display();
    }

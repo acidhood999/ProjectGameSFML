@@ -30,8 +30,7 @@ public:
 		w = W; 
 		h = H;
 
-		image.loadFromFile( file);
-		image.createMaskFromColor(Color(41, 33, 59));
+		image.loadFromFile(file);
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 
