@@ -124,7 +124,7 @@ int main()
                Frame = 0;
            }
 
-           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 51));
+           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18, 131, 30, 52));
            //herosprite.move(0.1 * time, 0);
        }
 
@@ -137,13 +137,15 @@ int main()
        
        if (isAnyKeyPressed())
        {
+          
+           
            Frame += 0.005 * time;
 
-           if (Frame > 13)
+           if (Frame > 14)
            {
                Frame = 0;
            }
-           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18, 9, 33, 51));
+           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 15, 9, 31, 52));
 
        }
       
