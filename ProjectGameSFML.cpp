@@ -110,8 +110,23 @@ int main()
                Frame = 0;
            }
 
+
+
            Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 18 + 30, 131, -30, 51));
-           
+           if (isAnyKeyPressed())
+           {
+
+
+               Frame += 0.005 * time;
+
+               if (Frame > 14)
+               {
+                   Frame = 0;
+               }
+               Hero.sprite.setTextureRect(IntRect(35 * int(Frame) + 15 + 35, 9, -35, 52));
+
+           }
+          
        }
 
        if ((Keyboard::isKeyPressed(Keyboard::D)))
@@ -135,19 +150,25 @@ int main()
            Hero.walking(0);
        }
        
-       if (isAnyKeyPressed())
-       {
-          
-           
-           Frame += 0.005 * time;
 
-           if (Frame > 14)
-           {
-               Frame = 0;
-           }
-           Hero.sprite.setTextureRect(IntRect(32 * int(Frame) + 15, 9, 31, 52));
 
-       }
+
+
+
+
+       //if (isAnyKeyPressed())
+       //{
+
+
+       //    Frame += 0.005 * time;
+
+       //    if (Frame > 14)
+       //    {
+       //        Frame = 0;
+       //    }
+       //    Hero.sprite.setTextureRect(IntRect(35 * int(Frame) + 15 + 35, 9, -35, 52));
+
+       //}
       
 
        Hero.walking(time);
